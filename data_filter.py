@@ -16,20 +16,26 @@ def prefill_prompt(tweet,target,stance):
 
 
 def generate_single_turn(id: int, tweet: str, target: str, stance: str):
+    json_template = (
+        '{{"id": "{}","fluency": float (0-1),"clarity": float (0-1),"leakage_severity": int (0 or 1),"sanitized_inferability": float (0-1),"stance_support": float (0-1),"ambiguity": float (0-1)}}'
+    ).format(id) 
     messages = [
         {
             "role": "system",
-            "content": "You are an expert annotator for stance detection data quality. "
-                       "Your task is to evaluate whether a given tweet expresses a clear and reasonable stance toward the specified target.\n"
-                       "Carefully follow the instructions and output a strict JSON object with the required fields.\n"
-                       "1. Fluency: Is the text grammatically correct and fluent to read? (0–1, continuous; higher = more fluent, lower = less fluent)\n"
-                       "2. Clarity: Is the meaning of the text clear and understandable, even with sarcasm/irony? (0–1, continuous; higher = clearer, lower = harder to interpret)\n"
-                       "3. Leakage Severity: Does the text explicitly reveal the target (hashtags, @mentions, quoted names)? (0 or 1, binary; 1 = leakage present [bad], 0 = no leakage [good])\n"
-                       "4. Sanitized Inferability: After removing leakage, can the target still be reasonably inferred? (0–1, continuous; higher = easier to infer, lower = impossible to infer)\n"
-                       "5. Stance Support: Does the text provide enough evidence for its stance? (0–1, continuous; higher = strong stance evidence, lower = weak or no evidence)\n"
-                       "6. Ambiguity: Is the target/stance ambiguous or multi-target? (0–1, continuous; higher = more ambiguous [bad], lower = unambiguous [good])\n"
-                       "Please output your judgment in the following JSON format and do not add explanations or extra text:\n"
-                        f'{"id": "{id}","fluency": float (0-1),"clarity": float (0-1),"leakage_severity": float (0-1),"sanitized_inferability": float (0-1),"ambiguity": float (0-1)}'
+            "content": 
+            (
+                "You are an expert annotator for stance detection data quality. "
+                "Your task is to evaluate whether a given tweet expresses a clear and reasonable stance toward the specified target.\n"
+                "Carefully follow the instructions and output a strict JSON object with the required fields.\n"
+                "1. Fluency: Is the text grammatically correct and fluent to read? (0–1, continuous; higher = more fluent, lower = less fluent)\n"
+                "2. Clarity: Is the meaning of the text clear and understandable, even with sarcasm/irony? (0–1, continuous; higher = clearer, lower = harder to interpret)\n"
+                "3. Leakage Severity: Does the text explicitly reveal the target (hashtags, @mentions, quoted names)? (0 or 1, binary; 1 = leakage present [bad], 0 = no leakage [good])\n"
+                "4. Sanitized Inferability: After removing leakage, can the target still be reasonably inferred? (0–1, continuous; higher = easier to infer, lower = impossible to infer)\n"
+                "5. Stance Support: Does the text provide enough evidence for its stance? (0–1, continuous; higher = strong stance evidence, lower = weak or no evidence)\n"
+                "6. Ambiguity: Is the target/stance ambiguous or multi-target? (0–1, continuous; higher = more ambiguous [bad], lower = unambiguous [good])\n"
+                "Please output your judgment in the following JSON format and do not add explanations or extra text:\n"
+                f"{json_template}"
+            )
         },
         {
             "role": "user",
