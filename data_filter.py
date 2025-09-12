@@ -66,8 +66,8 @@ model_name = "Qwen/Qwen3-8B"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
+start_time = time.time()
 for row in range(df.shape[0]):
-    start_time = time.time()
     id = df.iloc[row]['ID']
     tweet = df.iloc[row]['Tweet']
     target = df.iloc[row]['Target']
@@ -95,8 +95,8 @@ for row in range(df.shape[0]):
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
         print(f"Saved remaining {len(results)} samples to {output_file}")
 
-    end_time = time.time()
-    print(f"Total time consumed:{int((end_time-start_time)/60)}")
+end_time = time.time()
+print(f"Total time consumed:{int((end_time-start_time)/60)}")
 
 
 
