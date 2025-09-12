@@ -16,8 +16,9 @@ def prefill_prompt(tweet,target,stance):
 
 
 def generate_single_turn(id: int, tweet: str, target: str, stance: str):
+    print(id)
     json_template = (
-        '{{"id": "{}","fluency": float (0-1),"clarity": float (0-1),"leakage_severity": int (0 or 1),"sanitized_inferability": float (0-1),"stance_support": float (0-1),"ambiguity": float (0-1)}}'
+        '{{"id": {},"fluency": float (0-1),"clarity": float (0-1),"leakage_severity": int (0 or 1),"sanitized_inferability": float (0-1),"stance_support": float (0-1),"ambiguity": float (0-1)}}'
     ).format(id) 
     messages = [
         {
@@ -51,7 +52,7 @@ def generate_single_turn(id: int, tweet: str, target: str, stance: str):
         return_tensors="pt",
     ).to(model.device)
 
-    outputs = model.generate(**inputs, max_new_tokens=128)
+    outputs = model.generate(**inputs, max_new_tokens=128,temperature=0.6)
     response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
     return response
 
@@ -77,15 +78,17 @@ for row in range(df.shape[0]):
 
     try:
         parsed = json.loads(response)
+        if "id" not in parsed:
+            parsed["id"] = id
     except Exception:
         parsed = {"id": id, "raw_response": response}
     results.append(parsed)
 
-    if (row + 1) % batch_size == 0:
+    if id % batch_size == 0:
+        print("Current ID: ",id)
         with open(output_file, "a", encoding="utf-8") as f:
             for r in results:
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
-        print(f"Saved {row + 1} samples to {output_file}")
         results = []  # 清空缓存
 
     # 收尾：如果最后不足100条，也要写一次
