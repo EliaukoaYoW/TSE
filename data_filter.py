@@ -16,7 +16,7 @@ def prefill_prompt(tweet,target,stance):
 
 
 def generate_single_turn(id: int, tweet: str, target: str, stance: str):
-    print(id)
+
     json_template = (
         '{{"id": {},"fluency": float (0-1),"clarity": float (0-1),"leakage_severity": int (0 or 1),"sanitized_inferability": float (0-1),"stance_support": float (0-1),"ambiguity": float (0-1)}}'
     ).format(id) 
@@ -57,7 +57,7 @@ def generate_single_turn(id: int, tweet: str, target: str, stance: str):
     return response
 
 results = []
-batch_size = 100
+batch_size = 10
 output_file = "annotations.jsonl"
 
 file = "pstance-trump-all.csv"
@@ -92,11 +92,12 @@ for row in range(df.shape[0]):
         results = []  # 清空缓存
 
     # 收尾：如果最后不足100条，也要写一次
-    if results:
-        with open(output_file, "a", encoding="utf-8") as f:
-            for r in results:
-                f.write(json.dumps(r, ensure_ascii=False) + "\n")
-        print(f"Saved remaining {len(results)} samples to {output_file}")
+
+if results:
+    with open(output_file, "a", encoding="utf-8") as f:
+        for r in results:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    print(f"Saved remaining {len(results)} samples to {output_file}")
 
 end_time = time.time()
 print(f"Total time consumed:{int((end_time-start_time)/60)}")
