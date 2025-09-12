@@ -15,7 +15,7 @@ def prefill_prompt(tweet,target,stance):
     return content
 
 
-def generate_single_turn(tweet: str,target: str, stance: str):
+def generate_single_turn(id: int, tweet: str, target: str, stance: str):
     messages = [
         {
             "role": "system",
