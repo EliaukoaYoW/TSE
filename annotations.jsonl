@@ -18,3 +18,13 @@
 {"id": 18, "fluency": 1.0, "clarity": 1.0, "leakage_severity": 1, "sanitized_inferability": 0.0, "stance_support": 1.0, "ambiguity": 0.0}
 {"id": 19, "fluency": 0.8, "clarity": 0.7, "leakage_severity": 1, "sanitized_inferability": 0.3, "stance_support": 0.6, "ambiguity": 0.2}
 {"id": 20, "fluency": 1.0, "clarity": 1.0, "leakage_severity": 1, "sanitized_inferability": 0.5, "stance_support": 1.0, "ambiguity": 0.0}
+{"id": 21, "fluency": 1.0, "clarity": 1.0, "leakage_severity": 1, "sanitized_inferability": 0.5, "stance_support": 0.8, "ambiguity": 0.2}
+{"id": 22, "fluency": 1.0, "clarity": 1.0, "leakage_severity": 1, "sanitized_inferability": 0.0, "stance_support": 0.5, "ambiguity": 0.0}
+{"id": 23, "fluency": 0.95, "clarity": 0.85, "leakage_severity": 1, "sanitized_inferability": 0.3, "stance_support": 0.8, "ambiguity": 0.1}
+{"id": 24, "fluency": 0.9, "clarity": 0.8, "leakage_severity": 1, "sanitized_inferability": 0.2, "stance_support": 0.7, "ambiguity": 0.3}
+{"id": 25, "fluency": 1.0, "clarity": 1.0, "leakage_severity": 1, "sanitized_inferability": 0.0, "stance_support": 0.5, "ambiguity": 0.0}
+{"id": 26, "fluency": 1.0, "clarity": 1.0, "leakage_severity": 1, "sanitized_inferability": 0.5, "stance_support": 0.8, "ambiguity": 0.2}
+{"id": 27, "fluency": 0.9, "clarity": 0.8, "leakage_severity": 1, "sanitized_inferability": 0.2, "stance_support": 0.7, "ambiguity": 0.1}
+{"id": 28, "fluency": 1.0, "clarity": 0.8, "leakage_severity": 1, "sanitized_inferability": 0.3, "stance_support": 0.6, "ambiguity": 0.2}
+{"id": 29, "fluency": 1.0, "clarity": 1.0, "leakage_severity": 1, "sanitized_inferability": 0.0, "stance_support": 1.0, "ambiguity": 0.0}
+{"id": 30, "fluency": 1.0, "clarity": 1.0, "leakage_severity": 1, "sanitized_inferability": 0.0, "stance_support": 0.5, "ambiguity": 0.0}
