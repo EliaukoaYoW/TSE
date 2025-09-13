@@ -61,7 +61,7 @@ batch_size = 10
 output_file = "annotations.jsonl"
 
 file = "pstance-trump-all.csv"
-df = pandas.read_csv(file,nrows=1000)
+df = pandas.read_csv(file,file,skiprows=range(1, 1200))
 
 model_name = "Qwen/Qwen3-8B"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
